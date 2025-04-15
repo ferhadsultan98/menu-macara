@@ -26,8 +26,8 @@ $transition: all 0.3s ease;
     z-index: 4;
 
     .nav-link,
-    .lang-current
-    {
+    .lang-current,
+    .lang-current span {
       color: $text-dark;
     }
 
@@ -207,8 +207,8 @@ $transition: all 0.3s ease;
       }
 
       &:hover {
-        border-color: rgb(145, 113, 46);
-        color: rgb(145, 113, 46);
+        border-color: rgb(121, 91, 26);
+        color: rgb(121, 91, 26);
       }
     }
 

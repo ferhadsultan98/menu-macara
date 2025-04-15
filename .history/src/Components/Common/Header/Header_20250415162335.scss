@@ -26,14 +26,17 @@ $transition: all 0.3s ease;
     z-index: 4;
 
     .nav-link,
-    .lang-current
-    {
+    .lang-current,
+    .lang-current span {
       color: $text-dark;
     }
 
     .lang-current {
       border-color: black;
-    
+      
+      span{
+color: black;
+      }
 
       &:hover {
         border-color: rgba($dark-color, 0.4);
@@ -185,8 +188,8 @@ $transition: all 0.3s ease;
       display: flex;
       align-items: center;
       background: transparent;
-      border: 1px solid #d4b062;
-      color: #d4b062;
+      border: 1px solid rgba($light-color, 0.4);
+      color: $text-light;
       border-radius: 4px;
       cursor: pointer;
       font-weight: 500;
@@ -195,6 +198,7 @@ $transition: all 0.3s ease;
 
       span {
         font-size: 0.9rem;
+        color: $text-light;
       }
 
       i {
@@ -207,8 +211,7 @@ $transition: all 0.3s ease;
       }
 
       &:hover {
-        border-color: rgb(145, 113, 46);
-        color: rgb(145, 113, 46);
+        border-color: rgba($light-color, 0.8);
       }
     }
 
