@@ -86,7 +86,7 @@ const Footer = () => {
                   <span>sales@macaraclub.az</span>
                 </li>
               </ul>
-              <a href="https://maps.app.goo.gl/35UcEZzbX2nMFG9H6" className="footerContactLink" target="_blank">
+              <a href="https://maps.app.goo.gl/35UcEZzbX2nMFG9H6" className="footerContactLink">
                 {t("footer.viewMap")}
               </a>
             </div>
@@ -94,7 +94,7 @@ const Footer = () => {
             <div className="footerHours">
               <h4 className="footerHoursTitle">{t("footer.openHours")}</h4>
               <p className="footerHoursText">12:00 - 22:00</p>
-              <a href="https://macaraclub.az/" className="footerHoursLink">
+              <a href="/reservation" className="footerHoursLink">
                 {t("footer.bookaTable")}
               </a>
             </div>

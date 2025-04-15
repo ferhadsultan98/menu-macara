@@ -94,7 +94,7 @@ const Footer = () => {
             <div className="footerHours">
               <h4 className="footerHoursTitle">{t("footer.openHours")}</h4>
               <p className="footerHoursText">12:00 - 22:00</p>
-              <a href="https://macaraclub.az/" className="footerHoursLink">
+              <a href="/reservation" className="footerHoursLink">
                 {t("footer.bookaTable")}
               </a>
             </div>

@@ -24,7 +24,7 @@ const MenuSection = () => {
     const fetchMenu = async () => {
       try {
         const res = await fetch(
-          "https://qrcodegenerateai.netlify.app/data.json"
+          "https://wqv5j94f-5500.euw.devtunnels.ms/data.json"
         );
         const data = await res.json();
         // Store items with category keys normalized for filtering
