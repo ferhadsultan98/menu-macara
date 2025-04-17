@@ -98,6 +98,7 @@ const MenuSection = () => {
       }));
     }
 
+    // Filter by search term if present
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       items = items.filter((item) => {

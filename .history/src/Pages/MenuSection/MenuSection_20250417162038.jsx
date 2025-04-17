@@ -98,6 +98,7 @@ const MenuSection = () => {
       }));
     }
 
+    // Filter by search term if present
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       items = items.filter((item) => {
@@ -134,7 +135,7 @@ const MenuSection = () => {
     return () => window.removeEventListener("resize", updateMetrics);
   }, [activeFilter, menuItems]);
 
-
+  // Add sticky navbar effect
   useEffect(() => {
     const handleScroll = () => {
       if (sectionRef.current && navbarRef.current) {
