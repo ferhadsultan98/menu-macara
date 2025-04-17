@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "./Header.scss";
 import Logo from "../../../assets/logo.png";
-import whiteLogo from "../../../assets/logowhite.png";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
@@ -20,12 +19,14 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [scrolled]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -51,11 +52,7 @@ const Header = () => {
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className="headerContainer">
         <div className="logo">
-          <img
-            src={scrolled ? Logo : whiteLogo}
-            alt={scrolled ? "Logo" : "White Logo"}
-            className="logo-img"
-          />
+          <img src={Logo} alt="Logo" />
         </div>
 
         <div className="header-actions">
