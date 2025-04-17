@@ -1,17 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./MenuSection.scss";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import Loading from "../../Components/Loading/Loading";
-import { database, ref, onValue } from "../../server/server";
 
 const MenuSection = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [visibleItems, setVisibleItems] = useState([]);
   const [menuItems, setMenuItems] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [fetchError, setFetchError] = useState(null);
   const filterListRef = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
@@ -19,75 +18,58 @@ const MenuSection = () => {
   const [hasMore, setHasMore] = useState(true);
   const { i18n, t } = useTranslation();
 
-  const processMenuData = (data) => {
-    const formattedData = Array.isArray(data) ? data : Object.values(data);
-    return formattedData.reduce((acc, cat) => {
-      if (!cat || !cat.category || !cat.category.en) return acc;
-      const categoryKey = cat.category.en.toLowerCase().replace(/\s+/g, "-");
-      acc[categoryKey] = {
-        items: Array.isArray(cat.items) ? cat.items : Object.values(cat.items || {}),
-        name: cat.category,
-      };
-      return acc;
-    }, {});
-  };
 
+  // Fetch data from remote JSON
   useEffect(() => {
-    let isMounted = true;
-    try {
-      const menuRef = ref(database, "menu");
-      const unsubscribe = onValue(
-        menuRef,
-        (snapshot) => {
-          if (!isMounted) return;
-          const data = snapshot.val();
-          if (data) {
-            setMenuItems(processMenuData(data));
-          } else {
-            setMenuItems({});
-          }
-          setIsLoading(false);
-          setFetchError(null);
-        },
-        (error) => {
-          if (!isMounted) return;
-          setFetchError(`Failed to fetch menu data: ${error.message}`);
-          setMenuItems({});
-          setIsLoading(false);
-        }
-      );
-      return () => {
-        isMounted = false;
-        unsubscribe();
-      };
-    } catch (error) {
-      if (!isMounted) return;
-      setFetchError(`Error connecting to database: ${error.message}`);
-      setMenuItems({});
-      setIsLoading(false);
-    }
+    const fetchMenu = async () => {
+      try {
+        const res = await fetch(
+          "https://qrcodegenerateai.netlify.app/data.json"
+        );
+        const data = await res.json();
+        // Store items with category keys normalized for filtering
+        setMenuItems(
+          data.menu.reduce((acc, cat) => {
+            const categoryKey = cat.category.en.toLowerCase().replace(/\s+/g, "-");
+            acc[categoryKey] = {
+              items: cat.items,
+              name: cat.category, // Store multilingual category names
+            };
+            return acc;
+          }, {})
+        );
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Veri alınamadı:", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchMenu();
   }, []);
+
+  // Extract unique categories
+  const categories = Object.keys(menuItems);
 
   useEffect(() => {
     let items = [];
     if (activeFilter === "all") {
       Object.keys(menuItems).forEach((category) => {
-        if (menuItems[category] && Array.isArray(menuItems[category].items)) {
-          items = [
-            ...items,
-            ...menuItems[category].items.map((item) => ({
-              ...item,
-              category: menuItems[category].name,
-            })),
-          ];
-        }
+        items = [
+          ...items,
+          ...menuItems[category].items.map((item) => ({
+            ...item,
+            category: menuItems[category].name, // Use multilingual category object
+          })),
+        ];
       });
-    } else if (menuItems[activeFilter] && Array.isArray(menuItems[activeFilter].items)) {
+    } else if (menuItems[activeFilter]) {
       items = menuItems[activeFilter].items.map((item) => ({
         ...item,
-        category: menuItems[activeFilter].name,
+        category: menuItems[activeFilter].name, // Use multilingual category object
       }));
     }
+
     setVisibleItems(items);
     setItemsToShow(6);
     setHasMore(items.length > 6);
@@ -97,40 +79,55 @@ const MenuSection = () => {
     const updateMetrics = () => {
       if (filterListRef.current) {
         const element = filterListRef.current;
-        setMaxScroll(Math.max(0, element.scrollWidth - element.clientWidth));
+        setMaxScroll(element.scrollWidth - element.clientWidth);
         setScrollPosition(element.scrollLeft);
       }
     };
+
     updateMetrics();
     scrollActiveFilterIntoView();
+
     window.addEventListener("resize", updateMetrics);
     return () => window.removeEventListener("resize", updateMetrics);
-  }, [activeFilter, menuItems]);
+  }, [activeFilter]);
 
-  const handleFilterClick = (filter) => setActiveFilter(filter);
+  const handleFilterClick = (filter) => {
+    setActiveFilter(filter);
+  };
 
   const handleScroll = (direction) => {
     if (!filterListRef.current) return;
+
     const element = filterListRef.current;
-    const scrollAmount = direction === "prev" ? -element.clientWidth * 0.7 : element.clientWidth * 0.7;
-    element.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    const scrollAmount = element.clientWidth * 0.7;
+
+    element.scrollBy({
+      left: direction === "prev" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
   };
 
   const handleFilterListScroll = () => {
     if (filterListRef.current) {
       setScrollPosition(filterListRef.current.scrollLeft);
-      setMaxScroll(Math.max(0, filterListRef.current.scrollWidth - filterListRef.current.clientWidth));
+      setMaxScroll(
+        filterListRef.current.scrollWidth - filterListRef.current.clientWidth
+      );
     }
   };
 
   const scrollActiveFilterIntoView = () => {
     if (!filterListRef.current) return;
-    const activeButton = filterListRef.current.querySelector(".menuFilterButtonActive");
+
+    const activeButton = filterListRef.current.querySelector(
+      ".menuFilterButtonActive"
+    );
     if (activeButton) {
       const list = filterListRef.current;
       const buttonLeft = activeButton.offsetLeft;
       const buttonWidth = activeButton.offsetWidth;
       const listWidth = list.clientWidth;
+
       const scrollTo = buttonLeft - listWidth / 2 + buttonWidth / 2;
       list.scrollTo({ left: scrollTo, behavior: "smooth" });
     }
@@ -144,60 +141,76 @@ const MenuSection = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5 },
+    },
   };
-
-  const categories = Object.keys(menuItems);
 
   return (
     <section className="menuSection" id="menu">
       <div className="container">
-        {fetchError && (
-          <div className="errorMessage" style={{ color: 'red', margin: '10px 0', padding: '10px', background: '#ffeeee', borderRadius: '5px' }}>
-            {fetchError}
-          </div>
-        )}
         <nav className="menuFilter">
           <div className="menuFilterContainer">
             <button
-              className={`scrollButton scrollButtonPrev ${scrollPosition <= 0 ? "scrollButtonDisabled" : ""}`}
+              className={`scrollButton scrollButtonPrev ${
+                scrollPosition <= 0 ? "scrollButtonDisabled" : ""
+              }`}
               onClick={() => handleScroll("prev")}
               disabled={scrollPosition <= 0}
               aria-label="Scroll left"
             >
               <IoIosArrowBack fontSize="24px" />
             </button>
-            <div className="menuFilterList" ref={filterListRef} onScroll={handleFilterListScroll}>
+
+            <div
+              className="menuFilterList"
+              ref={filterListRef}
+              onScroll={handleFilterListScroll}
+            >
               <div className="menuFilterItem">
                 <motion.button
-                  className={`menuFilterButton ${activeFilter === "all" ? "menuFilterButtonActive" : ""}`}
+                  className={`menuFilterButton ${
+                    activeFilter === "all" ? "menuFilterButtonActive" : ""
+                  }`}
                   onClick={() => handleFilterClick("all")}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {t("all")}
+                  {t("all")} {/* Translate "All" if needed */}
                 </motion.button>
               </div>
+
               {categories.map((category) => (
                 <div key={category} className="menuFilterItem">
                   <motion.button
-                    className={`menuFilterButton ${activeFilter === category ? "menuFilterButtonActive" : ""}`}
+                    className={`menuFilterButton ${
+                      activeFilter === category ? "menuFilterButtonActive" : ""
+                    }`}
                     onClick={() => handleFilterClick(category)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    {menuItems[category]?.name?.[i18n.language] || menuItems[category]?.name?.en || category}
+                    {menuItems[category].name[i18n.language] ||
+                      menuItems[category].name.en}
                   </motion.button>
                 </div>
               ))}
             </div>
+
             <button
-              className={`scrollButton scrollButtonNext ${scrollPosition >= maxScroll ? "scrollButtonDisabled" : ""}`}
+              className={`scrollButton scrollButtonNext ${
+                scrollPosition >= maxScroll ? "scrollButtonDisabled" : ""
+              }`}
               onClick={() => handleScroll("next")}
               disabled={scrollPosition >= maxScroll}
               aria-label="Scroll right"
@@ -206,8 +219,10 @@ const MenuSection = () => {
             </button>
           </div>
         </nav>
+
         {isLoading ? (
-          <Loading />
+          // <p>{t("loading")}</p> 
+          <Loading/>
         ) : (
           <AnimatePresence mode="wait">
             <motion.div
@@ -220,7 +235,7 @@ const MenuSection = () => {
             >
               {visibleItems.slice(0, itemsToShow).map((item) => (
                 <motion.div
-                  key={`${item.id || Math.random().toString(36).substr(2, 9)}`}
+                  key={`${item.category.en}-${item.id}`}
                   className="menuItem"
                   variants={itemVariants}
                 >
@@ -228,25 +243,21 @@ const MenuSection = () => {
                     <div className="menuItemImage">
                       <img
                         src={item.image_url}
-                        alt={item.name?.[i18n.language] || item.name?.en || "Menu item"}
-                        onError={(e) => {
-                          e.target.src = "/placeholder-food.jpg";
-                          e.target.onerror = null;
-                        }}
+                        alt={item.name[i18n.language] || item.name.en}
                       />
                       <div className="menuItemCategoryBadge">
-                        {item.category?.[i18n.language] || item.category?.en || ""}
+                        {item.category[i18n.language] || item.category.en}
                       </div>
                     </div>
                     <div className="menuItemContent">
                       <h4 className="menuItemTitle">
-                        {item.name?.[i18n.language] || item.name?.en || "Unnamed item"}
+                        {item.name[i18n.language] || item.name.en}
                       </h4>
                       <p className="menuItemDescription">
-                        {item.description?.[i18n.language] || item.description?.en || ""}
+                        {item.description[i18n.language] || item.description.en}
                       </p>
                       <div className="menuItemFooter">
-                        <span className="menuItemPrice">{item.price?.toFixed(2) || "0.00"}₼</span>
+                        <span className="menuItemPrice">{item.price}₼</span>
                       </div>
                     </div>
                   </div>
@@ -255,6 +266,7 @@ const MenuSection = () => {
             </motion.div>
           </AnimatePresence>
         )}
+
         {hasMore && !isLoading && (
           <div className="menuLoadMore">
             <motion.button
