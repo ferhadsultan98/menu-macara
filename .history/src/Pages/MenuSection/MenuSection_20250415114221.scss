@@ -1,0 +1,624 @@
+// Mixins
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin hoverLift {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Reset and Base Styles
+.menuSection {
+  padding: 100px 0;
+  background-color: #f9f9f9;
+  position: relative;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(212, 163, 115, 0.05) 0%,
+      rgba(212, 163, 115, 0) 70%
+    );
+    z-index: 0;
+  }
+
+  &::before {
+    top: -150px;
+    left: -150px;
+  }
+
+  &::after {
+    bottom: -150px;
+    right: -150px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Menu Filter - Enhanced with Overflow Support
+.menuFilter {
+  margin-bottom: 50px;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -15px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      rgba(212, 163, 115, 0),
+      rgba(212, 163, 115, 0.3),
+      rgba(212, 163, 115, 0)
+    );
+  }
+
+  .menuFilterContainer {
+    position: relative;
+    padding: 0 40px; // Space for scroll indicators
+
+    // Scroll indicators/buttons
+    .scrollButton {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid rgba(212, 163, 115, 0.2);
+      color: #d4a373;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+      z-index: 5;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+      &:hover {
+        background: rgba(212, 163, 115, 0.1);
+      }
+
+      &.scrollButtonPrev {
+        left: 0;
+      }
+
+      &.scrollButtonNext {
+        right: 0;
+      }
+
+      &.scrollButtonDisabled {
+        opacity: 0.3;
+        cursor: default;
+
+        &:hover {
+          background: white;
+        }
+      }
+    }
+  }
+
+  .menuFilterList {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE/Edge
+    scroll-behavior: smooth;
+
+    // Hide scrollbar
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    // Add padding to allow focus ring visibility
+    padding: 5px;
+    margin: -5px;
+  }
+
+  .menuFilterItem {
+    flex: 0 0 auto;
+    margin: 0 5px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .menuFilterButton {
+    background: transparent;
+    border: 2px solid transparent;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #4a4a4a;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-transform: capitalize;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+
+    // Icon styles
+    .menuIcon {
+      display: inline-block;
+      margin-right: 8px;
+      font-size: 0.9rem;
+    }
+
+    &:hover {
+      background-color: rgba(212, 163, 115, 0.1);
+      color: #d4a373;
+      border-color: rgba(212, 163, 115, 0.2);
+    }
+
+    &.menuFilterButtonActive {
+      background-color: #d4a373;
+      color: white !important;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(212, 163, 115, 0.3);
+      border-color: #d4a373;
+    }
+  }
+
+  .menuFilterChipsDesign {
+    .menuFilterButton {
+      padding: 8px 16px;
+      font-size: 0.85rem;
+
+      .menuIcon {
+        margin-right: 6px;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+// Menu Grid - Enhanced
+.menuGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 35px;
+  margin-bottom: 50px;
+}
+
+// Menu Items - Enhanced
+.menuItem {
+  animation: fadeIn 0.8s ease forwards;
+
+  .menuItemCard {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    @include hoverLift;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .menuItemImage {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      z-index: 1;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .menuItemCategoryBadge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(212, 163, 115, 0.9);
+    color: white;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .menuItemContent {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  .menuItemTitle {
+    font-size: 1.5rem;
+    color: #2e2e2e;
+    margin-bottom: 12px;
+    font-weight: 600;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: #d4a373;
+      border-radius: 2px;
+    }
+  }
+
+  .menuItemDescription {
+    font-size: 0.95rem;
+    color: #777777;
+    margin-bottom: 20px;
+    line-height: 1.7;
+    flex-grow: 1;
+  }
+
+  .menuItemFooter {
+    @include flexBetween;
+    margin-top: auto;
+  }
+
+  .menuItemPrice {
+    font-size: 1.3rem;
+    color: #d4a373;
+    font-weight: 700;
+  }
+
+  .menuItemOrderBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #d4a373;
+    color: white;
+    border: none;
+    cursor: pointer;
+    @include flexCenter;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 10px rgba(212, 163, 115, 0.3);
+
+    i {
+      font-size: 1rem;
+    }
+
+    &:hover {
+      background-color: darken(#d4a373, 10%);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(212, 163, 115, 0.4);
+    }
+  }
+}
+
+// Load More Button
+.menuLoadMore {
+  text-align: center;
+  margin: 40px 0;
+
+  .loadMoreButton {
+    background-color: transparent;
+    border: 2px solid #d4a373;
+    color: #d4a373;
+    padding: 14px 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &:hover {
+      background-color: #d4a373;
+      color: white;
+      box-shadow: 0 5px 15px rgba(212, 163, 115, 0.3);
+    }
+  }
+}
+
+// Call to Action - Enhanced
+.menuAction {
+  text-align: center;
+  margin-top: 60px;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      rgba(212, 163, 115, 0),
+      rgba(212, 163, 115, 0.5),
+      rgba(212, 163, 115, 0)
+    );
+  }
+
+  .primaryButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 35px;
+    background-color: #d4a373;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 20px rgba(212, 163, 115, 0.3);
+
+    i {
+      font-size: 0.9rem;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background-color: darken(#d4a373, 8%);
+      box-shadow: 0 12px 30px rgba(212, 163, 115, 0.4);
+
+      i {
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+
+// Category-specific icons
+.iconLunch::before {
+  content: "\f5bd"; // Font Awesome lunch icon code
+  ont-weight: 900;
+}
+
+.iconDinner::before {
+  content: "\f2e7"; // Font Awesome dinner icon code
+  ont-weight: 900;
+}
+
+.iconDessert::before {
+  content: "\f810"; // Font Awesome cake icon code
+  ont-weight: 900;
+}
+
+.iconDrinks::before {
+  content: "\f561"; // Font Awesome cocktail icon code
+  ont-weight: 900;
+}
+
+// Additional icons for extended categories
+.iconAppetizers::before {
+  content: "\f7ef"; // Font Awesome appetizer icon code
+  ont-weight: 900;
+}
+
+.iconSalads::before {
+  content: "\f787"; // Font Awesome salad icon code
+  ont-weight: 900;
+}
+
+.iconPasta::before {
+  content: "\f72a"; // Font Awesome pasta icon code
+  ont-weight: 900;
+}
+
+.iconPizza::before {
+  content: "\f818"; // Font Awesome pizza icon code
+  ont-weight: 900;
+}
+
+.iconVegan::before {
+  content: "\f6c0"; // Font Awesome vegetable icon code
+  ont-weight: 900;
+}
+
+.iconGlutenFree::before {
+  content: "\f7e0"; // Font Awesome wheat-slash icon code
+  ont-weight: 900;
+}
+
+.iconSpecials::before {
+  content: "\f559"; // Font Awesome crown icon code
+  ont-weight: 900;
+}
+
+// Responsive Design - Enhanced
+@media (max-width: 1200px) {
+  .menuGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+  }
+
+  .menuFilterContainer {
+    padding: 0 36px;
+  }
+}
+
+@media (max-width: 992px) {
+  .menuSection {
+    padding: 80px 0;
+  }
+
+  .menuGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .menuFilterContainer {
+    padding: 0 32px;
+  }
+
+  .scrollButton {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .menuSection {
+    padding: 60px 0;
+  }
+
+  .menuFilter {
+    .menuFilterContainer {
+      padding: 0 30px;
+    }
+
+    .menuFilterButton {
+      font-size: 0.9rem;
+      padding: 10px 16px;
+    }
+  }
+
+  .menuGrid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .menuItemImage {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menuSection {
+    padding: 50px 0;
+  }
+
+  .menuFilter {
+    margin-bottom: 30px;
+
+    .menuFilterContainer {
+      padding: 0 26px;
+    }
+
+    .menuFilterButton {
+      padding: 8px 14px;
+      font-size: 0.8rem;
+
+      .menuIcon {
+        margin-right: 6px;
+        font-size: 0.75rem;
+      }
+    }
+
+    .scrollButton {
+      width: 24px;
+      height: 24px;
+      font-size: 0.7rem;
+    }
+  }
+
+  .menuItem {
+    .menuItemTitle {
+      font-size: 1.3rem;
+    }
+
+    .menuItemPrice {
+      font-size: 1.1rem;
+    }
+
+    .menuItemContent {
+      padding: 20px;
+    }
+
+    .menuItemDescription {
+      font-size: 0.9rem;
+    }
+  }
+
+  .primaryButton {
+    padding: 14px 25px;
+    font-size: 1rem;
+  }
+}
