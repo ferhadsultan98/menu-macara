@@ -961,16 +961,13 @@
 
 // Small screens adjustments
 @media (max-width: 400px) {
-
+  
   .menuSection {
     padding: 40px 0;
   }
 
   .menuNavbarWrapper {
     margin-bottom: 20px;
-    &.sticky{
-      top: 70px;
-    }
   }
 
   .menuSearch {

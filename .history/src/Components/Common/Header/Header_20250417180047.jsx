@@ -4,6 +4,7 @@ import Logo from "../../../assets/logo.png";
 import whiteLogo from "../../../assets/logowhite.png";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -50,15 +51,14 @@ const Header = () => {
   return (
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className="headerContainer">
-        <a href="/">
-          <div className="logo">
-            <img
-              src={scrolled ? Logo : whiteLogo}
-              alt={scrolled ? "Logo" : "White Logo"}
-              className="logo-img"
-            />
-          </div>
-        </a>
+        <div className="logo">
+          <Link>
+          <img
+            src={scrolled ? Logo : whiteLogo}
+            alt={scrolled ? "Logo" : "White Logo"}
+            className="logo-img"
+          />
+        </div>
 
         <div className="header-actions">
           <div className="lang-dropdown" ref={dropdownRef}>

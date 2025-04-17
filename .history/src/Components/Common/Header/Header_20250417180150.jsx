@@ -50,15 +50,17 @@ const Header = () => {
   return (
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <div className="headerContainer">
-        <a href="/">
-          <div className="logo">
-            <img
-              src={scrolled ? Logo : whiteLogo}
-              alt={scrolled ? "Logo" : "White Logo"}
-              className="logo-img"
-            />
-          </div>
-        </a>
+        <div className="logo">
+          <Link
+          to="/"
+          >
+          <img
+            src={scrolled ? Logo : whiteLogo}
+            alt={scrolled ? "Logo" : "White Logo"}
+            className="logo-img"
+          />
+          </Link>
+        </div>
 
         <div className="header-actions">
           <div className="lang-dropdown" ref={dropdownRef}>
