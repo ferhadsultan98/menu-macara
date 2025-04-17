@@ -97,7 +97,7 @@ const MenuSection = () => {
         category: menuItems[activeFilter].name,
       }));
     }
-  
+
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       items = items.filter((item) => {
@@ -113,17 +113,12 @@ const MenuSection = () => {
           .includes(term);
         return nameMatch || descMatch;
       });
-  
-      setTimeout(() => {
-        sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
     }
-  
+
     setVisibleItems(items);
     setItemsToShow(6);
     setHasMore(items.length > 6);
   }, [activeFilter, menuItems, searchTerm, i18n.language]);
-  
 
   useEffect(() => {
     const updateMetrics = () => {
@@ -139,10 +134,13 @@ const MenuSection = () => {
     return () => window.removeEventListener("resize", updateMetrics);
   }, [activeFilter, menuItems]);
 
+
   useEffect(() => {
     const handleScroll = () => {
       if (sectionRef.current && navbarRef.current) {
         const sectionTop = sectionRef.current.getBoundingClientRect().top;
+        const navbarHeight = navbarRef.current.offsetHeight;
+
         if (sectionTop <= 0) {
           setIsNavbarSticky(true);
         } else {
@@ -157,12 +155,7 @@ const MenuSection = () => {
     };
   }, []);
 
-  const handleFilterClick = (filter) => {
-    setActiveFilter(filter);
-    setTimeout(() => {
-      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
-  };
+  const handleFilterClick = (filter) => setActiveFilter(filter);
 
   const handleScroll = (direction) => {
     if (!filterListRef.current) return;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./MenuSection.scss";
 import { IoIosArrowForward, IoIosArrowBack, IoIosSearch } from "react-icons/io";
@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import Loading from "../../Components/Loading/Loading";
 import { database, ref, onValue } from "../../server/server";
 
-const MenuSection = () => {
+const MenuSection = forwardRef((props, ref) => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [visibleItems, setVisibleItems] = useState([]);
   const [menuItems, setMenuItems] = useState({});
@@ -97,7 +97,7 @@ const MenuSection = () => {
         category: menuItems[activeFilter].name,
       }));
     }
-  
+
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       items = items.filter((item) => {
@@ -113,17 +113,12 @@ const MenuSection = () => {
           .includes(term);
         return nameMatch || descMatch;
       });
-  
-      setTimeout(() => {
-        sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
     }
-  
+
     setVisibleItems(items);
     setItemsToShow(6);
     setHasMore(items.length > 6);
   }, [activeFilter, menuItems, searchTerm, i18n.language]);
-  
 
   useEffect(() => {
     const updateMetrics = () => {
@@ -143,6 +138,8 @@ const MenuSection = () => {
     const handleScroll = () => {
       if (sectionRef.current && navbarRef.current) {
         const sectionTop = sectionRef.current.getBoundingClientRect().top;
+        const navbarHeight = navbarRef.current.offsetHeight;
+
         if (sectionTop <= 0) {
           setIsNavbarSticky(true);
         } else {
@@ -157,12 +154,7 @@ const MenuSection = () => {
     };
   }, []);
 
-  const handleFilterClick = (filter) => {
-    setActiveFilter(filter);
-    setTimeout(() => {
-      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
-  };
+  const handleFilterClick = (filter) => setActiveFilter(filter);
 
   const handleScroll = (direction) => {
     if (!filterListRef.current) return;
@@ -228,7 +220,7 @@ const MenuSection = () => {
   const categories = Object.keys(menuItems);
 
   return (
-    <section className="menuSection" id="menu" ref={sectionRef}>
+    <section className="menuSection" id="menu" ref={ref || sectionRef}>
       <div
         className={`menuNavbarWrapper ${isNavbarSticky ? "sticky" : ""}`}
         ref={navbarRef}
@@ -303,6 +295,7 @@ const MenuSection = () => {
                             ? "menuFilterButtonActive"
                             : ""
                         }`}
+                       18n.language
                         onClick={() => handleFilterClick(category)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -414,6 +407,6 @@ const MenuSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default MenuSection;

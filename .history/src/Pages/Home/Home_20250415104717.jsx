@@ -189,7 +189,13 @@ const Home = () => {
                   <span>{t("home.descList4")}</span>
                 </li>
               </ul>
-             
+              <motion.button
+                className="aboutButton"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {t("home.moreExplore")}
+              </motion.button>
             </motion.div>
           </div>
         </div>

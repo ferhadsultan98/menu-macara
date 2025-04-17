@@ -13,8 +13,8 @@ const Header = () => {
 
   const languages = [
     { code: "en", name: "English" },
-    { code: "az", name: "Azərbaycan" },
-    { code: "ru", name: "Русский" },
+    { code: "az", name: "Az" },
+    { code: "ru", name: "Russian" },
   ];
 
   useEffect(() => {

@@ -14,7 +14,7 @@ const Header = () => {
   const languages = [
     { code: "en", name: "English" },
     { code: "az", name: "Azərbaycan" },
-    { code: "ru", name: "Русский" },
+    { code: "ru", name: "" },
   ];
 
   useEffect(() => {

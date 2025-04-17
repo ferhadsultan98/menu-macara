@@ -97,7 +97,7 @@ const MenuSection = () => {
         category: menuItems[activeFilter].name,
       }));
     }
-  
+
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       items = items.filter((item) => {
@@ -113,17 +113,12 @@ const MenuSection = () => {
           .includes(term);
         return nameMatch || descMatch;
       });
-  
-      setTimeout(() => {
-        sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
     }
-  
+
     setVisibleItems(items);
     setItemsToShow(6);
     setHasMore(items.length > 6);
   }, [activeFilter, menuItems, searchTerm, i18n.language]);
-  
 
   useEffect(() => {
     const updateMetrics = () => {
@@ -273,7 +268,7 @@ const MenuSection = () => {
                     scrollPosition <= 0 ? "scrollButtonDisabled" : ""
                   }`}
                   onClick={() => handleScroll("prev")}
-                  disabled={scrollPosition <= 0}
+                  
                   aria-label="Scroll left"
                 >
                   <IoIosArrowBack fontSize="24px" />

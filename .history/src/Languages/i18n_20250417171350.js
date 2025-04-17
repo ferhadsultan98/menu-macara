@@ -27,8 +27,8 @@ i18n
     fallbackLng: 'az', 
     supportedLngs: ['az', 'en', 'ru'],
     detection: {
-      order: ['localStorage', 'navigator'], 
-      caches: ['localStorage'], 
+      order: ['localStorage', 'navigator'], // İlk olaraq localStorage, sonra navigator.language
+      caches: ['localStorage'], // Seçimi yadda saxla
     },
     interpolation: {
       escapeValue: false,

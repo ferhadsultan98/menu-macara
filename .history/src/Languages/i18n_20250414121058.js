@@ -23,12 +23,11 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'az', 
-    fallbackLng: 'az', 
+    fallbackLng: 'az',
     supportedLngs: ['az', 'en', 'ru'],
     detection: {
-      order: ['localStorage', 'navigator'], 
-      caches: ['localStorage'], 
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage'],
     },
     interpolation: {
       escapeValue: false,

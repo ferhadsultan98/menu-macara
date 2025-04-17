@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./Home.scss";
 import { useTranslation } from "react-i18next";
 import { FaUtensils } from "react-icons/fa";
 
-const Home = () => {
+const Home = ({ scrollToMenu }) => {
   const { t, i18n } = useTranslation();
 
   const [scrollY, setScrollY] = useState(0);
@@ -67,7 +66,6 @@ const Home = () => {
             <i>
               <FaUtensils />
             </i>
-
             <span></span>
           </div>
           <motion.p
@@ -86,7 +84,7 @@ const Home = () => {
           >
             <motion.button
               className="menuButton"
-              
+              onClick={scrollToMenu} // Trigger scroll to MenuSection
               whileHover={{ scale: 1.05, backgroundColor: "#c9a552" }}
               whileTap={{ scale: 0.98 }}
             >
@@ -189,7 +187,13 @@ const Home = () => {
                   <span>{t("home.descList4")}</span>
                 </li>
               </ul>
-             
+              <motion.button
+                className="aboutButton"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {t("home.moreExplore")}
+              </motion.button>
             </motion.div>
           </div>
         </div>

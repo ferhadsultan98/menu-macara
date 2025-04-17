@@ -23,12 +23,12 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'az', 
-    fallbackLng: 'az', 
+    lng: 'az', // <-- İlkin olaraq Azərbaycan dilini göstər
+    fallbackLng: 'az', // <-- Əgər aşkar etməsə, default olaraq az
     supportedLngs: ['az', 'en', 'ru'],
     detection: {
-      order: ['localStorage', 'navigator'], 
-      caches: ['localStorage'], 
+      order: ['localStorage', 'navigator'], // İlk olaraq localStorage, sonra navigator.language
+      caches: ['localStorage'], // Seçimi yadda saxla
     },
     interpolation: {
       escapeValue: false,

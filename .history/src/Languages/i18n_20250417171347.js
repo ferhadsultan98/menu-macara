@@ -24,11 +24,11 @@ i18n
   .init({
     resources,
     lng: 'az', 
-    fallbackLng: 'az', 
+    fallbackLng: 'az', // <-- Əgər aşkar etməsə, default olaraq az
     supportedLngs: ['az', 'en', 'ru'],
     detection: {
-      order: ['localStorage', 'navigator'], 
-      caches: ['localStorage'], 
+      order: ['localStorage', 'navigator'], // İlk olaraq localStorage, sonra navigator.language
+      caches: ['localStorage'], // Seçimi yadda saxla
     },
     interpolation: {
       escapeValue: false,

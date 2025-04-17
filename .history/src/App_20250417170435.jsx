@@ -18,7 +18,7 @@ function App() {
     <I18nextProvider i18n={i18n}>
       <div className="app-container">
         <MainLayout>
-        <Home scrollToMenu={scrollToMenu} />
+          <Home/>
           <MenuSection ref={menuSectionRef} />
         </MainLayout>
       </div>
