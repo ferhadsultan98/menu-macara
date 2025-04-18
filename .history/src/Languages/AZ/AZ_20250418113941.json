@@ -1,0 +1,38 @@
+{
+  "header": {
+    "menu": ""
+  },
+  "home": {
+    "subtitle": "Dad və Tutqu",
+    "header": "Qastronomiya təcrübəsi",
+    "title": "Unikal dadlar və unudulmaz təcrübə üçün sizi restoranımızda gözləyirik.",
+    "exploreMenu": "Menyunu kəşf et",
+    "reservation": "Rezervasiya edin",
+    "about": "Bizim Hekayəmiz",
+    "mainheader": "Dad Tutqumuz",
+    "twoheader": "Ənənəvi və Müasir",
+    "desc": "2010-cu ildən etibarən biz təzə və yerli inqrediyentlərlə hazırlanmış xüsusi reseptlərimizlə qonaqlarımıza unudulmaz dad təcrübələri təqdim edirik. Aşpazlarımız dünya mətbəxinin ən yaxşı nümunələrini türk dadı ilə qarışdıraraq unikal dadlar yaradırlar.",
+    "descList1": "Təzə və mövsümi maddələr",
+    "descList2": "Menyular mükafatlı aşpazlar tərəfindən hazırlanır",
+    "descList3": "Diqqətlə seçilmiş şərab kolleksiyası",
+    "descList4": "Qəşəng və geniş mühit",
+    "moreExplore": "Daha çox araşdırın"
+  },
+  "footer": {
+    "desc": "Guba Garden — Quba rayonunun 2-ci Nügədi kəndində yerləşən gizli bir incidir. Burada ənənənin cazibəsi, yerli dadların ləzzəti və müasir dizaynın rahatlığı bir araya gələrək unudulmaz bir qonaqlıq təcrübəsi yaradır.",
+    "location": "Guba regionu, 2-ci Nügədi kəndi",
+    "viewMap": "Xəritədə Gör",
+    "openHours": "İş Saatları",
+    "bookaTable": "Rezervasiya edin",
+    "allRightReserved": "Bütün hüquqlar qorunur.",
+    "contactUs": "Əlaqə"
+  },
+  "menu": {
+    "all": "Hamısı",
+    "loadMore": "Daha çox",
+    "search": "Axtar...",
+    "noResults": "Nəticə yoxdur",
+    "tryDifferentSearch": "Fərqli axtarış cəhd edin",
+    "clearSearch": "Axtarışı təmizlə"
+  }
+}
