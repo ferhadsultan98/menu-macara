@@ -1,0 +1,32 @@
+{
+  "header": {
+    "menu": "Menyu"
+  },
+  "home": {
+    "header": "Dadı ilə seçilən, zövqlə yaradılan məkan",
+    "title": "Unikal dadlar və unudulmaz təcrübə üçün sizi restoranımızda gözləyirik.",
+    "exploreMenu": "Menyunu kəşf et",
+    "reservation": "Rezervasiya edin",
+    "about": "Bizim Hekayəmiz",
+    "mainheader": "Dad Tutqumuz",
+    "twoheader": "Ənənəvi və Müasir",
+    "moreExplore": "Daha çox araşdırın"
+  },
+  "footer": {
+    "desc": "Guba Garden — Quba rayonunun 2-ci Nügədi kəndində yerləşən gizli bir incidir. Burada ənənənin cazibəsi, yerli dadların ləzzəti və müasir dizaynın rahatlığı bir araya gələrək unudulmaz bir qonaqlıq təcrübəsi yaradır.",
+    "location": "Guba regionu, 2-ci Nügədi kəndi",
+    "viewMap": "Xəritədə Gör",
+    "openHours": "İş Saatları",
+    "bookaTable": "Rezervasiya edin",
+    "allRightReserved": "Bütün hüquqlar qorunur.",
+    "contactUs": "Əlaqə"
+  },
+  "menu": {
+    "all": "Hamısı",
+    "loadMore": "Daha çox",
+    "search": "Axtar...",
+    "noResults": "Nəticə yoxdur",
+    "tryDifferentSearch": "Fərqli axtarış cəhd edin",
+    "clearSearch": "Axtarışı təmizlə"
+  }
+}
