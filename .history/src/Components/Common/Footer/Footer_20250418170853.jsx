@@ -112,7 +112,7 @@ const Footer = () => {
                   <GrFacebookOption />
                 </a>
                 <a
-                  href="https://www.instagram.com/qubagardenrestaurant "
+                  href="https://www.instagram.com/qubagardenrestaurant"
                   aria-label="Instagram"
                   target="_blank"
                   className="social-icon"

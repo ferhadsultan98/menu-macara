@@ -97,7 +97,7 @@ const Home = () => {
               </motion.button>
             </a>
 
-            <a href="https://wa.me/+994552805000?text=Salam, masa rezerv etmək istəyirəm. Xahiş edirəm mümkünlüyü barədə məlumat verəsiniz. Təşəkkürlər!" target="_blank">
+            <a href="https://wa.me/+994552805000?text=reserve" target="_blank">
               <motion.button
                 className="reserveButton"
                 whileHover={{

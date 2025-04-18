@@ -1,5 +1,4 @@
-{
-  "header": {
+{"header": {
     "menu": "Меню"
   },
   "home": {
@@ -10,7 +9,8 @@
     "about": "Наша История",
     "mainheader": "Наша Страсть — Вкус",
     "twoheader": "Традиции и Современность",
-    "moreExplore": "Узнать больше",
+    "moreExplore": "Узнать больше"
+    ,
     "restaurantReserve": "Забронировать столик"
   },
   "footer": {

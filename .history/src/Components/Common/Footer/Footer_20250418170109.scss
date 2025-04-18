@@ -66,12 +66,12 @@
         transition: color 0.3s ease;
 
         svg {
-          color: rgba(212, 163, 115, 0.9);
+          color: #f7c948;
           font-size: 1.2rem;
         }
 
         &:hover {
-          color: rgba(234, 182, 130, 0.9);
+          color: #f7c948;
         }
       }
     }
@@ -81,7 +81,7 @@
     h4 {
       font-size: 1.25rem;
       margin-bottom: 1.5rem;
-      color: rgba(212, 163, 115, 0.9);
+      color: #f7c948;
       position: relative;
 
       &::after {
@@ -91,7 +91,7 @@
         left: 0;
         width: 40px;
         height: 2px;
-        background: rgba(212, 163, 115, 0.9);
+        background: #f7c948;
       }
     }
 
@@ -113,7 +113,7 @@
         transition: all 0.3s ease;
 
         &:hover {
-          background: rgba(212, 163, 115, 0.9);
+          background: #f7c948;
           color: #1a1a1a;
           transform: translateY(-3px);
         }
@@ -140,7 +140,7 @@
           color: rgba(212, 163, 115, 0.9);
 
           &:hover {
-            background: rgba(212, 163, 115, 0.9);
+            background: #f7c948;
             color: #1a1a1a;
           }
         }
@@ -152,8 +152,8 @@
 
           &:hover {
             background: transparent;
-            border-color: rgba(212, 163, 115, 0.9);
-            color: rgba(212, 163, 115, 0.9);
+            border-color: #f7c948;
+            color: #f7c948;
           }
         }
       }
@@ -181,7 +181,7 @@
 
     .copyright {
       span {
-        color: rgba(212, 163, 115, 0.9);
+        color: #f7c948;
       }
     }
   }
@@ -192,7 +192,7 @@
     right: 2rem;
     width: 50px;
     height: 50px;
-    background: rgba(212, 163, 115, 0.9);
+    background: #f7c948;
     color: #1a1a1a;
     border-radius: 50%;
     display: flex;

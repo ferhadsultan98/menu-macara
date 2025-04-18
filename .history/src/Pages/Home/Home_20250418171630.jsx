@@ -95,9 +95,6 @@ const Home = () => {
               >
                 {t("home.reservation")}
               </motion.button>
-            </a>
-
-            <a href="https://wa.me/+994552805000?text=Salam, masa rezerv etmək istəyirəm. Xahiş edirəm mümkünlüyü barədə məlumat verəsiniz. Təşəkkürlər!" target="_blank">
               <motion.button
                 className="reserveButton"
                 whileHover={{
@@ -106,7 +103,7 @@ const Home = () => {
                 }}
                 whileTap={{ scale: 0.98 }}
               >
-                 {t("home.restaurantReserve")}
+                {t("home.reservation")}
               </motion.button>
             </a>
           </motion.div>

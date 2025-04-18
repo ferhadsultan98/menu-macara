@@ -96,7 +96,8 @@ const Footer = () => {
                 </div>
                 <div className="contact-item">
                   <FaClock />
-                  <span>12:00-22:00</span>
+                  <span>12:00-22:00
+                  </span>
                 </div>
               </div>
             </div>
@@ -112,7 +113,7 @@ const Footer = () => {
                   <GrFacebookOption />
                 </a>
                 <a
-                  href="https://www.instagram.com/qubagardenrestaurant "
+                  href="https://www.instagram.com/qubagardenrestaurant/?utm_source=qr#"
                   aria-label="Instagram"
                   target="_blank"
                   className="social-icon"
@@ -123,7 +124,7 @@ const Footer = () => {
 
               <div className="footer-actions">
                 <a
-                  href="https://www.google.com/maps?geocode=FdFEdgIdlBjlAg%3D%3D;FQdGdgIdURflAinndJgEAJk3QDF1YYNJ_Mh4FQ%3D%3D&daddr=8H49+35C+Quba+Garden+Restaurant,+Quba&saddr=41.3052971,48.5684684&dirflg=w&ftid=0x40379900049874e7:0x1578c8fc49836175&lucs=,94224825,94227247,94227248,94231188,47071704,47069508,94218641,94203019,47084304,94208458,94208447&g_ep=CAISEjI1LjE1LjAuNzQ0OTgzNDA2MBgAILq3CypjLDk0MjI0ODI1LDk0MjI3MjQ3LDk0MjI3MjQ4LDk0MjMxMTg4LDQ3MDcxNzA0LDQ3MDY5NTA4LDk0MjE4NjQxLDk0MjAzMDE5LDQ3MDg0MzA0LDk0MjA4NDU4LDk0MjA4NDQ3QgJBWg%3D%3D&skid=a72ffac3-b3a5-4fdf-8a42-10e79c35405d&g_st=iw"
+                  href="https://maps.app.goo.gl/35UcEZzbX2nMFG9H6"
                   className="footer-btn map-btn"
                   target="_blank"
                 >
