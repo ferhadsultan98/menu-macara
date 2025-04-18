@@ -14,6 +14,7 @@ function App() {
       menuSectionRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
     <I18nextProvider i18n={i18n}>
       <div className="app-container">

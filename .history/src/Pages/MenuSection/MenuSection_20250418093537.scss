@@ -411,7 +411,9 @@
           background: white;
         }
       }
-      
+      .scrollButtonNext.scrollButtonDisabled {
+        opacity: 0.3;
+      }
     }
   }
 

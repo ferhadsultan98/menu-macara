@@ -406,12 +406,15 @@
       &.scrollButtonDisabled {
         opacity: 0.3;
         cursor: not-allowed;
+        background-color: red;
 
         &:hover {
           background: white;
         }
       }
-      
+      .scrollButtonNext.scrollButtonDisabled {
+        opacity: 0.3;
+      }
     }
   }
 

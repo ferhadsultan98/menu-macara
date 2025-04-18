@@ -5,7 +5,7 @@ import "./Home.scss";
 import { useTranslation } from "react-i18next";
 import { FaUtensils } from "react-icons/fa";
 
-const Home = ({ scrollToMenu }) => {
+const Home = () => {
   const { t, i18n } = useTranslation();
 
   const [scrollY, setScrollY] = useState(0);
@@ -86,7 +86,7 @@ const Home = ({ scrollToMenu }) => {
           >
             <motion.button
               className="menuButton"
-              onClick={scrollToMenu}
+              
               whileHover={{ scale: 1.05, backgroundColor: "#c9a552" }}
               whileTap={{ scale: 0.98 }}
             >
@@ -189,6 +189,7 @@ const Home = ({ scrollToMenu }) => {
                   <span>{t("home.descList4")}</span>
                 </li>
               </ul>
+             
             </motion.div>
           </div>
         </div>

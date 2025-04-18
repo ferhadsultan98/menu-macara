@@ -22,7 +22,7 @@ $transition: all 0.3s ease;
   &.scrolled {
     background-color: rgba($light-color, 0.95);
     backdrop-filter: blur(10px);
-
+    box-shadow: 0 5px 20px rgba($dark-color, 0.08);
     z-index: 4;
 
     .nav-link,
@@ -225,9 +225,8 @@ $transition: all 0.3s ease;
       padding: 5px 0;
       margin: 0;
       list-style: none;
-      z-index: 5;
-    
- 
+      z-index: 999;
+      background-color: red;
       li {
         display: flex;
         align-items: center;
@@ -237,7 +236,6 @@ $transition: all 0.3s ease;
 
         &.active {
           background-color: rgba(#d4b062, 0.1);
-   
 
           .lang-code {
             color: #d4b062;

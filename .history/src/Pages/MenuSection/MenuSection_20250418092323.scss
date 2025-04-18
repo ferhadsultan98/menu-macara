@@ -155,7 +155,7 @@
 // Sticky Navbar
 .menuNavbarWrapper {
   width: 100%;
-  z-index: 2;
+  z-index: 100;
   transition: all 0.3s ease;
   position: relative;
   margin-bottom: 50px;
@@ -174,7 +174,7 @@
     left: 0;
     right: 0;
     background-color: rgba(255, 255, 255, 0.98);
-    z-index: 2;
+    z-index: 4;
     animation: slideDown 0.3s ease forwards;
     padding: 10px 0;
 
@@ -186,7 +186,7 @@
       margin-bottom: 15px;
 
       .searchInputWrapper {
-        max-width: 800px;
+        max-width: 400px;
 
         @include mobile {
           max-width: 100%;
@@ -212,7 +212,7 @@
 
 // Adjust menu content when navbar is sticky
 .sticky + .menuContent {
-  padding-top: 160px;
+  padding-top: 110px;
 
   @include tablet {
     padding-top: 130px;
@@ -405,13 +405,12 @@
 
       &.scrollButtonDisabled {
         opacity: 0.3;
-        cursor: not-allowed;
+        cursor: default;
 
         &:hover {
           background: white;
         }
       }
-      
     }
   }
 

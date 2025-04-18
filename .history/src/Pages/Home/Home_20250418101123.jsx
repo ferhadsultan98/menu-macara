@@ -195,6 +195,6 @@ const Home = ({ scrollToMenu }) => {
       </section>
     </section>
   );
-};
+});
 
 export default Home;

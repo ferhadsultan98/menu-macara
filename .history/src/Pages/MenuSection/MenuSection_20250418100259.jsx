@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef, forwardRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./MenuSection.scss";
 import { IoIosArrowForward, IoIosArrowBack, IoIosSearch } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import Loading from "../../Components/Loading/Loading";
-import { database, ref as dbRef, onValue } from "../../server/server"; // Renamed ref to dbRef to avoid confusion
+import { database, ref, onValue } from "../../server/server";
 
-const MenuSection = forwardRef((props, ref) => {
+const MenuSection = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [visibleItems, setVisibleItems] = useState([]);
   const [menuItems, setMenuItems] = useState({});
@@ -41,7 +41,7 @@ const MenuSection = forwardRef((props, ref) => {
   useEffect(() => {
     let isMounted = true;
     try {
-      const menuRef = dbRef(database, "menu"); // Use dbRef instead of ref
+      const menuRef = ref(database, "menu");
       const unsubscribe = onValue(
         menuRef,
         (snapshot) => {
@@ -228,7 +228,7 @@ const MenuSection = forwardRef((props, ref) => {
   const categories = Object.keys(menuItems);
 
   return (
-    <section className="menuSection" id="menu" ref={ref}>
+    <section className="menuSection" id="menu" ref={sectionRef}>
       <div
         className={`menuNavbarWrapper ${isNavbarSticky ? "sticky" : ""}`}
         ref={navbarRef}
@@ -414,6 +414,6 @@ const MenuSection = forwardRef((props, ref) => {
       </div>
     </section>
   );
-});
+};
 
 export default MenuSection;

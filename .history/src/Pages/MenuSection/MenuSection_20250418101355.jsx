@@ -4,7 +4,7 @@ import "./MenuSection.scss";
 import { IoIosArrowForward, IoIosArrowBack, IoIosSearch } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import Loading from "../../Components/Loading/Loading";
-import { database, ref as dbRef, onValue } from "../../server/server"; // Renamed ref to dbRef to avoid confusion
+import { database, ref as dbRef, onValue } from "../../server/server";
 
 const MenuSection = forwardRef((props, ref) => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -41,7 +41,7 @@ const MenuSection = forwardRef((props, ref) => {
   useEffect(() => {
     let isMounted = true;
     try {
-      const menuRef = dbRef(database, "menu"); // Use dbRef instead of ref
+      const menuRef = ref(database, "menu");
       const unsubscribe = onValue(
         menuRef,
         (snapshot) => {

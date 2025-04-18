@@ -9,11 +9,13 @@ import MenuSection from "./Pages/MenuSection/MenuSection";
 function App() {
   const menuSectionRef = useRef(null);
 
+  // Scroll funksiyası
   const scrollToMenu = () => {
     if (menuSectionRef.current) {
       menuSectionRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
     <I18nextProvider i18n={i18n}>
       <div className="app-container">

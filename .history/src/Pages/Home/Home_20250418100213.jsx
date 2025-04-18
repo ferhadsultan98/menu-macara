@@ -189,6 +189,7 @@ const Home = ({ scrollToMenu }) => {
                   <span>{t("home.descList4")}</span>
                 </li>
               </ul>
+             
             </motion.div>
           </div>
         </div>
