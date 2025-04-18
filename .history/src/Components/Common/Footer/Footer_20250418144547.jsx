@@ -38,7 +38,11 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-  
+      <div className="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path fill="#121212" fillOpacity="1" d="M0,32L48,48C96,64,192,96,288,112C384,128,480,128,576,112C672,96,768,64,864,80C960,96,1056,160,1152,176C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+      </div>
       
       <div className="footer-content">
         <div className="container">
@@ -97,12 +101,16 @@ const Footer = () => {
           
           <div className="footer-bottom">
             <p className="copyright">
-              © {currentYear} <span>Created by PM Systems</span>. {t("footer.allRightReserved")}
+              © {currentYear} <span>Guba Garden Restaurant</span>. {t("footer.allRightReserved")}
             </p>
             
-        
+            <div className="payment-methods">
+              <span>Payment Methods:</span>
+              <img src={visaIcon} alt="Visa" />
+              <img src={mastercardIcon} alt="Mastercard" />
+            </div>
             
-            <p className="credits"></p>
+            <p className="credits">Created by PM Systems</p>
           </div>
         </div>
       </div>

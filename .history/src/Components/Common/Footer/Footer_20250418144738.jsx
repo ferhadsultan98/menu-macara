@@ -38,7 +38,9 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-  
+      <div className="footer-wave">
+     
+      </div>
       
       <div className="footer-content">
         <div className="container">
@@ -97,12 +99,16 @@ const Footer = () => {
           
           <div className="footer-bottom">
             <p className="copyright">
-              © {currentYear} <span>Created by PM Systems</span>. {t("footer.allRightReserved")}
+              © {currentYear} <span>Guba Garden Restaurant</span>. {t("footer.allRightReserved")}
             </p>
             
-        
+            <div className="payment-methods">
+              <span>Payment Methods:</span>
+              <img src={visaIcon} alt="Visa" />
+              <img src={mastercardIcon} alt="Mastercard" />
+            </div>
             
-            <p className="credits"></p>
+            <p className="credits">Created by PM Systems</p>
           </div>
         </div>
       </div>

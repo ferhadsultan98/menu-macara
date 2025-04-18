@@ -1,12 +1,16 @@
 .footer {
   position: relative;
-padding: 50px 0px;
+  color: #f8f8f8;
+  margin-top: 60px;
+
   // Wave decoration at the top
   .footer-wave {
     line-height: 0;
     transform: translateY(-1px);
 
-  
+    svg {
+      display: block;
+    }
   }
 
   .footer-content {
@@ -18,7 +22,10 @@ padding: 50px 0px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-
+    background: red;
+    justify-content: center;
+    display: flex;
+    align-items: center;
   }
 
   // Main footer section

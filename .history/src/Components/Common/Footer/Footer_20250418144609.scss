@@ -1,43 +1,47 @@
 .footer {
   position: relative;
-padding: 50px 0px;
+  color: #f8f8f8;
+  margin-top: 60px;
+  
   // Wave decoration at the top
   .footer-wave {
     line-height: 0;
     transform: translateY(-1px);
-
-  
+    
+    svg {
+      display: block;
+    }
   }
-
+  
   .footer-content {
     background-color: #121212;
     padding: 0 0 30px;
   }
-
+  
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-
+    background: red;
   }
-
+  
   // Main footer section
   .footer-main {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     gap: 40px;
     padding: 10px 0 40px;
-
+    
     @media (max-width: 992px) {
       grid-template-columns: 1fr 1fr;
     }
-
+    
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
       gap: 30px;
     }
   }
-
+  
   // Logo and description section
   .footer-info {
     .footer-logo {
@@ -46,7 +50,7 @@ padding: 50px 0px;
       margin-bottom: 20px;
       object-fit: contain;
     }
-
+    
     .footer-description {
       color: #ababab;
       font-size: 15px;
@@ -55,23 +59,23 @@ padding: 50px 0px;
       max-width: 90%;
     }
   }
-
+  
   // Contact items
   .footer-contact-items {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-
+    
     @media (max-width: 576px) {
       grid-template-columns: 1fr;
     }
-
+    
     .contact-item {
       display: flex;
       align-items: center;
       color: #ababab;
       font-size: 14px;
-
+      
       svg {
         color: #d4af37;
         margin-right: 10px;
@@ -80,7 +84,7 @@ padding: 50px 0px;
       }
     }
   }
-
+  
   // Quick links section
   .footer-quick-links {
     h4 {
@@ -89,7 +93,7 @@ padding: 50px 0px;
       font-weight: 600;
       margin-bottom: 25px;
       position: relative;
-
+      
       &:after {
         content: "";
         position: absolute;
@@ -100,15 +104,15 @@ padding: 50px 0px;
         background-color: #d4af37;
       }
     }
-
+    
     ul {
       list-style: none;
       padding: 0;
       margin: 0;
-
+      
       li {
         margin-bottom: 12px;
-
+        
         a {
           color: #ababab;
           text-decoration: none;
@@ -116,14 +120,14 @@ padding: 50px 0px;
           transition: all 0.25s ease;
           position: relative;
           padding-left: 15px;
-
+          
           &:before {
             content: "›";
             position: absolute;
             left: 0;
             color: #d4af37;
           }
-
+          
           &:hover {
             color: #fff;
             padding-left: 18px;
@@ -132,7 +136,7 @@ padding: 50px 0px;
       }
     }
   }
-
+  
   // Connect section
   .footer-connect {
     h4 {
@@ -141,7 +145,7 @@ padding: 50px 0px;
       font-weight: 600;
       margin-bottom: 25px;
       position: relative;
-
+      
       &:after {
         content: "";
         position: absolute;
@@ -152,12 +156,12 @@ padding: 50px 0px;
         background-color: #d4af37;
       }
     }
-
+    
     .social-icons {
       display: flex;
       gap: 12px;
       margin-bottom: 25px;
-
+      
       .social-icon {
         display: flex;
         align-items: center;
@@ -169,11 +173,11 @@ padding: 50px 0px;
         color: #f8f8f8;
         transition: all 0.3s ease;
         font-size: 18px;
-
+        
         svg {
           display: block;
         }
-
+        
         &:hover {
           background-color: #d4af37;
           color: #121212;
@@ -181,12 +185,12 @@ padding: 50px 0px;
         }
       }
     }
-
+    
     .footer-actions {
       display: flex;
       flex-direction: column;
       gap: 15px;
-
+      
       .footer-btn {
         display: block;
         padding: 10px 16px;
@@ -196,20 +200,20 @@ padding: 50px 0px;
         font-weight: 500;
         font-size: 14px;
         transition: all 0.3s ease;
-
+        
         &.map-btn {
           background-color: rgba(255, 255, 255, 0.1);
           color: #f8f8f8;
-
+          
           &:hover {
             background-color: rgba(255, 255, 255, 0.2);
           }
         }
-
+        
         &.book-btn {
           background-color: #d4af37;
           color: #121212;
-
+          
           &:hover {
             background-color: darken(#d4af37, 10%);
             transform: translateY(-2px);
@@ -218,19 +222,14 @@ padding: 50px 0px;
       }
     }
   }
-
+  
   // Divider
   .footer-divider {
     height: 1px;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0)
-    );
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     margin-bottom: 30px;
   }
-
+  
   // Footer bottom section
   .footer-bottom {
     display: flex;
@@ -238,45 +237,45 @@ padding: 50px 0px;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-
+    
     @media (max-width: 768px) {
       flex-direction: column;
       text-align: center;
     }
-
+    
     .copyright {
       color: #777;
       font-size: 14px;
       margin: 0;
-
+      
       span {
         color: #d4af37;
       }
     }
-
+    
     .payment-methods {
       display: flex;
       align-items: center;
       gap: 8px;
-
+      
       span {
         color: #777;
         font-size: 14px;
       }
-
+      
       img {
         height: 28px;
         width: auto;
       }
     }
-
+    
     .credits {
       color: #777;
       font-size: 14px;
       margin: 0;
     }
   }
-
+  
   // Scroll to top button
   .scroll-top {
     position: fixed;
@@ -296,21 +295,21 @@ padding: 50px 0px;
     transition: all 0.3s ease;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
     z-index: 100;
-
+    
     svg {
       font-size: 22px;
     }
-
+    
     &.visible {
       opacity: 1;
       visibility: visible;
     }
-
+    
     &:hover {
       background-color: lighten(#d4af37, 5%);
       transform: translateY(-5px);
     }
-
+    
     &.pulse {
       animation: pulse 2s infinite;
     }

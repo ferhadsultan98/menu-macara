@@ -97,7 +97,7 @@ const Footer = () => {
           
           <div className="footer-bottom">
             <p className="copyright">
-              © {currentYear} <span>Created by PM Systems</span>. {t("footer.allRightReserved")}
+              © {currentYear} <span>Guba Garden Restaurant</span>. {t("footer.allRightReserved")}
             </p>
             
         
