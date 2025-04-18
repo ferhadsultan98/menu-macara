@@ -13,7 +13,7 @@ const MenuSection = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
   const filterListRef = useRef(null);
-  const [scrolled, setScrolled] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
   const [itemsToShow, setItemsToShow] = useState(6);
   const [hasMore, setHasMore] = useState(true);
@@ -97,7 +97,7 @@ const MenuSection = () => {
         category: menuItems[activeFilter].name,
       }));
     }
-
+  
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       items = items.filter((item) => {
@@ -113,42 +113,73 @@ const MenuSection = () => {
           .includes(term);
         return nameMatch || descMatch;
       });
-
+  
       setTimeout(() => {
         sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
     }
-
+  
     setVisibleItems(items);
     setItemsToShow(6);
     setHasMore(items.length > 6);
   }, [activeFilter, menuItems, searchTerm, i18n.language]);
-
+  
   useEffect(() => {
-    const updateMetrics = () => {
+    const updateScrollMetrics = () => {
       if (filterListRef.current) {
         const element = filterListRef.current;
-        const newMaxScroll = element.scrollWidth - element.clientWidth;
-        setMaxScroll(newMaxScroll > 0 ? newMaxScroll : 0);
-        setScrolled(element.scrollLeft);
+        const newMaxScroll = Math.max(0, element.scrollWidth - element.clientWidth);
+        setMaxScroll(newMaxScroll);
+        setScrollPosition(element.scrollLeft);
       }
     };
-    updateMetrics();
+    
+    updateScrollMetrics();
     scrollActiveFilterIntoView();
-    window.addEventListener("resize", updateMetrics);
-    return () => window.removeEventListener("resize", updateMetrics);
+    
+    const handleResize = () => {
+      updateScrollMetrics();
+    };
+    
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [activeFilter, menuItems]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (filterListRef.current) {
+        setScrollPosition(filterListRef.current.scrollLeft);
+      }
+    };
+    
+    const filterList = filterListRef.current;
+    if (filterList) {
+      filterList.addEventListener("scroll", handleScroll);
+    }
+    
+    return () => {
+      if (filterList) {
+        filterList.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       if (sectionRef.current && navbarRef.current) {
         const sectionTop = sectionRef.current.getBoundingClientRect().top;
-        setIsNavbarSticky(sectionTop <= 0);
+        if (sectionTop <= 0) {
+          setIsNavbarSticky(true);
+        } else {
+          setIsNavbarSticky(false);
+        }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleFilterClick = (filter) => {
@@ -161,28 +192,21 @@ const MenuSection = () => {
   const handleScroll = (direction) => {
     if (!filterListRef.current) return;
     const element = filterListRef.current;
-    const scrollAmount =
-      direction === "prev"
-        ? -element.clientWidth * 0.7
-        : element.clientWidth * 0.7;
-    element.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    const scrollAmount = direction === "prev" ? -element.clientWidth * 0.7 : element.clientWidth * 0.7;
+    
+    const newScrollPosition = Math.max(0, Math.min(element.scrollLeft + scrollAmount, maxScroll));
+    element.scrollTo({ left: newScrollPosition, behavior: "smooth" });
   };
 
   const handleFilterListScroll = () => {
     if (filterListRef.current) {
-      const element = filterListRef.current;
-      const newScrolled = element.scrollLeft;
-      const newMaxScroll = element.scrollWidth - element.clientWidth;
-      setScrolled(newScrolled);
-      setMaxScroll(newMaxScroll > 0 ? newMaxScroll : 0);
+      setScrollPosition(filterListRef.current.scrollLeft);
     }
   };
 
   const scrollActiveFilterIntoView = () => {
     if (!filterListRef.current) return;
-    const activeButton = filterListRef.current.querySelector(
-      ".menuFilterButtonActive"
-    );
+    const activeButton = filterListRef.current.querySelector(".menuFilterButtonActive");
     if (activeButton) {
       const list = filterListRef.current;
       const buttonLeft = activeButton.offsetLeft;
@@ -218,6 +242,9 @@ const MenuSection = () => {
   };
 
   const categories = Object.keys(menuItems);
+
+  const isScrollStart = scrollPosition <= 0;
+  const isScrollEnd = scrollPosition >= maxScroll;
 
   return (
     <section className="menuSection" id="menu" ref={sectionRef}>
@@ -261,11 +288,9 @@ const MenuSection = () => {
             <nav className="menuFilter">
               <div className="menuFilterContainer">
                 <button
-                  className={`scrollButton scrollButtonPrev ${
-                    scrolled <= 0 ? "scrollButtonDisabled" : ""
-                  }`}
+                  className={`scrollButton scrollButtonPrev ${isScrollStart ? "scrollButtonDisabled" : ""}`}
                   onClick={() => handleScroll("prev")}
-                  disabled={scrolled <= 0}
+                  disabled={isScrollStart}
                   aria-label="Scroll left"
                 >
                   <IoIosArrowBack fontSize="24px" />
@@ -277,9 +302,7 @@ const MenuSection = () => {
                 >
                   <div className="menuFilterItem">
                     <motion.button
-                      className={`menuFilterButton ${
-                        activeFilter === "all" ? "menuFilterButtonActive" : ""
-                      }`}
+                      className={`menuFilterButton ${activeFilter === "all" ? "menuFilterButtonActive" : ""}`}
                       onClick={() => handleFilterClick("all")}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -290,11 +313,7 @@ const MenuSection = () => {
                   {categories.map((category) => (
                     <div key={category} className="menuFilterItem">
                       <motion.button
-                        className={`menuFilterButton ${
-                          activeFilter === category
-                            ? "menuFilterButtonActive"
-                            : ""
-                        }`}
+                        className={`menuFilterButton ${activeFilter === category ? "menuFilterButtonActive" : ""}`}
                         onClick={() => handleFilterClick(category)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -307,11 +326,9 @@ const MenuSection = () => {
                   ))}
                 </div>
                 <button
-                  className={`scrollButton scrollButtonNext ${
-                    scrolled >= maxScroll - 1 ? "scrollButtonDisabled" : ""
-                  }`}
+                  className={`scrollButton scrollButtonNext ${isScrollEnd ? "scrollButtonDisabled" : ""}`}
                   onClick={() => handleScroll("next")}
-                  disabled={scrolled >= maxScroll - 1}
+                  disabled={isScrollEnd}
                   aria-label="Scroll right"
                 >
                   <IoIosArrowForward fontSize="24px" />
