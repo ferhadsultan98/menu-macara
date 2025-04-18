@@ -30,8 +30,7 @@ const Home = () => {
       clearTimeout(timer);
     };
   }, []);
-  const waMessages =
-    "Salam, masa rezerv etmək istəyirəm. Xahiş edirəm mümkünlüyü barədə məlumat verəsiniz. Təşəkkürlər!";
+  const waMessages = "Salam, masa rezerv etmək istəyirəm. Xahiş edirəm mümkünlüyü barədə məlumat verəsiniz. Təşəkkürlər!"
 
   return (
     <section className="homePage">
@@ -86,12 +85,9 @@ const Home = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
-            <a
-              href={`https://wa.me/+994552805000?text=${encodeURIComponent(
-                waMessages
-              )}`}
-              target="_blank"
-            >
+
+
+            <a href={`https://wa.me/+994552805000?text=${encodeURIComponent(waMessages)}`} target="_blank">
               <motion.button
                 className="reserveButton"
                 whileHover={{
@@ -100,7 +96,7 @@ const Home = () => {
                 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {t("home.restaurantReserve")}
+                 {t("home.restaurantReserve")}
               </motion.button>
             </a>
           </motion.div>
