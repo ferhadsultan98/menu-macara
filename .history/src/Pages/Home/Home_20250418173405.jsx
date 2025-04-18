@@ -30,7 +30,7 @@ const Home = () => {
       clearTimeout(timer);
     };
   }, []);
-  const waMessages = "Salam, masa rezerv etmək istəyirəm. Xahiş edirəm mümkünlüyü barədə məlumat verəsiniz. Təşəkkürlər!"
+  const waMessages = 
 
   return (
     <section className="homePage">
@@ -98,7 +98,7 @@ const Home = () => {
               </motion.button>
             </a>
 
-            <a href={`https://wa.me/+994552805000?text=${encodeURIComponent(waMessages)}`} target="_blank">
+            <a href="https://wa.me/+994552805000?text=Salam, masa rezerv etmək istəyirəm. Xahiş edirəm mümkünlüyü barədə məlumat verəsiniz. Təşəkkürlər!" target="_blank">
               <motion.button
                 className="reserveButton"
                 whileHover={{
