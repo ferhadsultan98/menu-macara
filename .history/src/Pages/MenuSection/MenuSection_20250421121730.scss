@@ -994,16 +994,9 @@
   .menuFilter {
     .menuFilterContainer {
       padding: 0 22px;
-      padding-bottom: 22px;
-      .scrollButton{
-        &.scrollButtonPrev{
-          top: 100%;
-        }
-        &.scrollButtonNext{
-          top: 100%;
-        }
+      &.scrollButtonPrev{
+        background-color: red;
       }
-      
     }
 
     .scrollButton {
@@ -1015,9 +1008,7 @@
     .menuFilterButton {
       padding: 6px 12px;
       font-size: 0.8rem;
-     
     }
-    
   }
 
   .menuItem {
