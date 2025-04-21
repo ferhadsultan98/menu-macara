@@ -106,7 +106,7 @@ const Footer = () => {
               <h4> {t("footer.connectWithUs")}</h4>
               <div className="social-icons">
                 <a
-                  href="https://www.facebook.com/profile.php?id=61568928467790"
+                  href="https://facebook.com"
                   aria-label="Facebook"
                   className="social-icon"
                   target="_blank"
