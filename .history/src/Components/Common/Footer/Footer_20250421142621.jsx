@@ -146,7 +146,7 @@ const Footer = () => {
 
           <div className="footer-bottom">
             <p className="copyright">
-              © {currentYear}
+              © {currentYear}{" "}
               <a href="https://pmsystems.az/" target="_blank">
                 <span>Created by PM Systems</span>.
               </a>

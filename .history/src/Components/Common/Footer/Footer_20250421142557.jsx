@@ -15,6 +15,7 @@ import {
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
+
 const Footer = () => {
   const { t } = useTranslation();
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -138,6 +139,7 @@ const Footer = () => {
                 >
                   {t("footer.viewMap")}
                 </a>
+                
               </div>
             </div>
           </div>
@@ -146,10 +148,7 @@ const Footer = () => {
 
           <div className="footer-bottom">
             <p className="copyright">
-              © {currentYear}
-              <a href="https://pmsystems.az/" target="_blank">
-                <span>Created by PM Systems</span>.
-              </a>
+              © {currentYear} <a href=""><span>Created by PM Systems</span></a>.{" "}
               {t("footer.allRightReserved")}
             </p>
 

@@ -146,8 +146,8 @@ const Footer = () => {
 
           <div className="footer-bottom">
             <p className="copyright">
-              © {currentYear}
-              <a href="https://pmsystems.az/" target="_blank">
+              © {currentYear}{" "}
+              <a href="">
                 <span>Created by PM Systems</span>.
               </a>
               {t("footer.allRightReserved")}
