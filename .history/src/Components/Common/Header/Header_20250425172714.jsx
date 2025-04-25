@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./Header.scss";
-import Logo from "../../../../public/assets/logo.png";
-import whiteLogo from "../../../../public/assets/logowhite.png";
+import Logo from "../../../../public/assets/";
+import whiteLogo from "../../../assets/logowhite.png";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { IoRestaurantOutline } from "react-icons/io5";

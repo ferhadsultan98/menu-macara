@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Footer.scss";
 import logo from "../../../../public/assets/logowhite.png";
 import visaIcon from "../../../../public/assets/visa.png";
-import mastercardIcon from "../../../../public/assets/mastercard.png";
+import mastercardIcon from "../../../assets/mastercard.png";
 import { IoIosArrowUp } from "react-icons/io";
 import { GrFacebookOption } from "react-icons/gr";
 import {
