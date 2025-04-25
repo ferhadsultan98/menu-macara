@@ -356,7 +356,7 @@ const MenuSection = () => {
                           item.name?.[i18n.language] ||
                           item.name?.en ||
                           "Menu item"
-                        } 
+                        } // Alt metin dil desteği ile
                         onError={(e) => {
                           e.target.onerror = null;
                         }}

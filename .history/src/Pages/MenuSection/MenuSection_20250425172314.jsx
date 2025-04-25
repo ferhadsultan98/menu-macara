@@ -115,10 +115,7 @@ const MenuSection = () => {
       });
 
       setTimeout(() => {
-        sectionRef.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
     }
 
@@ -157,10 +154,7 @@ const MenuSection = () => {
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
     setTimeout(() => {
-      sectionRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
   };
 
@@ -350,17 +344,17 @@ const MenuSection = () => {
                 >
                   <div className="menuItemCard">
                     <div className="menuItemImage">
-                      <img
-                        src={`/assets/menu/${item.image_url}`} 
-                        alt={
-                          item.name?.[i18n.language] ||
-                          item.name?.en ||
-                          "Menu item"
-                        } 
-                        onError={(e) => {
-                          e.target.onerror = null;
-                        }}
-                      />
+                    <img
+  src={`/assets/menu/${item.image_url}`}
+  alt={
+    item.name?.[i18n.language] ||
+    item.name?.en ||
+    "Menu item"
+  }
+  onError={(e) => {
+    e.target.onerror = null;
+  }}
+/>
 
                       <div className="menuItemCategoryBadge">
                         {item.category?.[i18n.language] ||

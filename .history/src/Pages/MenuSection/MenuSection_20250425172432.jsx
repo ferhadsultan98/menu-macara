@@ -351,12 +351,12 @@ const MenuSection = () => {
                   <div className="menuItemCard">
                     <div className="menuItemImage">
                       <img
-                        src={`/assets/menu/${item.image_url}`} 
+                        src={`/assets/menu/${item.image_url}`} // Resmin yolu dil ile ilgili değil
                         alt={
                           item.name?.[i18n.language] ||
                           item.name?.en ||
                           "Menu item"
-                        } 
+                        } // Alt metin dil desteği ile
                         onError={(e) => {
                           e.target.onerror = null;
                         }}
